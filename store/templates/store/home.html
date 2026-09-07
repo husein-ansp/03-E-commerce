@@ -1,0 +1,240 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}NOVA Store{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <span class="hero-tag">
+                    <i class="bi bi-stars"></i>
+                    New collection
+                </span>
+
+                <h1>
+                    Everything you need,
+                    <span>in one place.</span>
+                </h1>
+
+                <p>
+                    Discover modern products made
+                    for your everyday life.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{% url 'products' %}"
+                        class="btn btn-primary">
+                        Shop Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="{% url 'products' %}?sale=true"
+                        class="btn btn-outline-dark">
+                        View Deals
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+                <img src="{% static 'images/banners/hero.jpg' %}"
+                    alt="Featured products">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="categories section">
+    <div class="container">
+
+        <div class="section-title">
+            <div>
+                <span>Explore</span>
+                <h2>Shop by category</h2>
+            </div>
+        </div>
+
+        <div class="category-grid">
+
+            <a href="{% url 'products' %}?category=electronics"
+                class="category-card">
+
+                <i class="bi bi-headphones"></i>
+
+                <h5>Electronics</h5>
+
+                <span>
+                    Explore electronics
+                </span>
+
+            </a>
+
+            <a href="{% url 'products' %}?category=fashion"
+                class="category-card">
+
+                <i class="bi bi-bag"></i>
+
+                <h5>Fashion</h5>
+
+                <span>
+                    Explore fashion
+                </span>
+
+            </a>
+
+            <a href="{% url 'products' %}?category=home"
+                class="category-card">
+
+                <i class="bi bi-house"></i>
+
+                <h5>Home</h5>
+
+                <span>
+                    Explore home products
+                </span>
+
+            </a>
+
+            <a href="{% url 'products' %}?category=gaming"
+                class="category-card">
+
+                <i class="bi bi-controller"></i>
+
+                <h5>Gaming</h5>
+
+                <span>
+                    Explore gaming
+                </span>
+
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section class="products-section section">
+    <div class="container">
+
+        <div class="section-title">
+
+            <div>
+                <span>Our selection</span>
+                <h2>Featured products</h2>
+            </div>
+
+            <a href="{% url 'products' %}">
+                View all
+                <i class="bi bi-arrow-right"></i>
+            </a>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for product in products %}
+
+            <div class="col-6 col-md-4 col-lg-3">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img src="{{ product.image.url }}"
+                                alt="{{ product.name }}">
+                        </a>
+
+                        <button class="wishlist-btn"
+                            data-product="{{ product.id }}">
+                            <i class="bi bi-heart"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>
+                            {{ product.category.name }}
+                        </span>
+
+                        <h5>
+                            <a href="{% url 'product_detail' product.id %}">
+                                {{ product.name }}
+                            </a>
+                        </h5>
+
+                        <div class="product-rating">
+                            <i class="bi bi-star-fill"></i>
+                            {{ product.rating }}
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <strong>
+                                ${{ product.price }}
+                            </strong>
+
+                            <button class="add-cart"
+                                data-product="{{ product.id }}">
+                                <i class="bi bi-plus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+
+            <div class="empty-products">
+                <i class="bi bi-box"></i>
+                <h4>No products available</h4>
+                <p>Check back later.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<section class="offer-section">
+    <div class="container">
+
+        <div class="offer-box">
+
+            <div>
+                <span>Limited offer</span>
+
+                <h2>
+                    Up to 30% off
+                </h2>
+
+                <p>
+                    Grab your favorites
+                    before the offer ends.
+                </p>
+
+                <a href="{% url 'products' %}?sale=true"
+                    class="btn btn-light">
+                    Shop the sale
+                </a>
+            </div>
+
+            <i class="bi bi-lightning-charge"></i>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

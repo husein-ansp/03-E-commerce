@@ -1,0 +1,66 @@
+{% extends "store/base.html" %}
+
+{% block title %}Shopping Cart — NOVA{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span>Your bag</span>
+        <h1>Shopping Cart</h1>
+    </div>
+</section>
+
+<section class="cart-section section">
+    <div class="container">
+
+        <div class="cart-page">
+
+            <div class="cart-items"
+                id="cartItems">
+            </div>
+
+            <div class="cart-summary">
+
+                <h4>Order Summary</h4>
+
+                <div>
+                    <span>Subtotal</span>
+                    <strong id="cartSubtotal">
+                        $0.00
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Shipping</span>
+                    <strong id="cartShipping">
+                        $0.00
+                    </strong>
+                </div>
+
+                <hr>
+
+                <div class="cart-total">
+                    <span>Total</span>
+                    <strong id="cartTotal">
+                        $0.00
+                    </strong>
+                </div>
+
+                <a href="{% url 'checkout' %}"
+                    class="btn btn-primary w-100">
+                    Proceed to Checkout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}

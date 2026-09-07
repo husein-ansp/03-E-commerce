@@ -1,0 +1,144 @@
+{% extends "store/base.html" %}
+
+{% block title %}Checkout — NOVA{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span>Almost there</span>
+        <h1>Checkout</h1>
+    </div>
+</section>
+
+<section class="checkout-section section">
+    <div class="container">
+
+        <form method="post"
+            class="checkout-grid">
+
+            {% csrf_token %}
+
+            <div class="checkout-form">
+
+                <h4>Contact information</h4>
+
+                <div class="form-row">
+
+                    <input type="text"
+                        name="first_name"
+                        placeholder="First name"
+                        required>
+
+                    <input type="text"
+                        name="last_name"
+                        placeholder="Last name"
+                        required>
+
+                </div>
+
+                <input type="email"
+                    name="email"
+                    placeholder="Email address"
+                    required>
+
+                <input type="text"
+                    name="phone"
+                    placeholder="Phone number"
+                    required>
+
+                <h4>Shipping address</h4>
+
+                <input type="text"
+                    name="address"
+                    placeholder="Street address"
+                    required>
+
+                <div class="form-row">
+
+                    <input type="text"
+                        name="city"
+                        placeholder="City"
+                        required>
+
+                    <input type="text"
+                        name="postal_code"
+                        placeholder="Postal code"
+                        required>
+
+                </div>
+
+                <h4>Payment</h4>
+
+                <label class="payment-option">
+
+                    <input type="radio"
+                        name="payment"
+                        value="card"
+                        checked>
+
+                    <i class="bi bi-credit-card"></i>
+
+                    Credit / Debit Card
+
+                </label>
+
+                <label class="payment-option">
+
+                    <input type="radio"
+                        name="payment"
+                        value="cash">
+
+                    <i class="bi bi-cash"></i>
+
+                    Cash on Delivery
+
+                </label>
+
+                <button class="btn btn-primary">
+                    Place Order
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+            </div>
+
+            <div class="checkout-summary">
+
+                <h4>Your Order</h4>
+
+                <div id="checkoutItems">
+                </div>
+
+                <hr>
+
+                <div>
+                    <span>Subtotal</span>
+
+                    <strong id="checkoutSubtotal">
+                        $0.00
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Shipping</span>
+                    <strong>$5.00</strong>
+                </div>
+
+                <div class="checkout-total">
+
+                    <span>Total</span>
+
+                    <strong id="checkoutTotal">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "store/base.html" %}
+
+{% block title %}
+{{ product.name }} — NOVA
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail section">
+    <div class="container">
+
+        <div class="product-detail-grid">
+
+            <div class="detail-image">
+                <img src="{{ product.image.url }}"
+                    alt="{{ product.name }}">
+            </div>
+
+            <div class="detail-info">
+
+                <span class="detail-category">
+                    {{ product.category.name }}
+                </span>
+
+                <h1>
+                    {{ product.name }}
+                </h1>
+
+                <div class="detail-rating">
+                    <i class="bi bi-star-fill"></i>
+
+                    {{ product.rating }}
+
+                    <span>
+                        ({{ product.reviews.count }}
+                        reviews)
+                    </span>
+                </div>
+
+                <h2>
+                    ${{ product.price }}
+                </h2>
+
+                <p class="detail-description">
+                    {{ product.description }}
+                </p>
+
+                <div class="quantity-box">
+
+                    <button id="decreaseQuantity"
+                        type="button">
+                        <i class="bi bi-dash"></i>
+                    </button>
+
+                    <span id="quantity">
+                        1
+                    </span>
+
+                    <button id="increaseQuantity"
+                        type="button">
+                        <i class="bi bi-plus"></i>
+                    </button>
+
+                </div>
+
+                <div class="detail-actions">
+
+                    <button class="btn btn-primary
+                        add-detail-cart"
+                        data-product="{{ product.id }}">
+
+                        <i class="bi bi-bag-plus"></i>
+                        Add to Cart
+
+                    </button>
+
+                    <button class="wishlist-detail"
+                        data-product="{{ product.id }}"
+                        type="button">
+
+                        <i class="bi bi-heart"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="product-features">
+
+                    <div>
+                        <i class="bi bi-truck"></i>
+                        <span>Fast delivery</span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+                        <span>Secure payment</span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-arrow-repeat"></i>
+                        <span>Easy returns</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

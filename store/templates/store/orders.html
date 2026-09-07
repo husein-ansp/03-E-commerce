@@ -1,0 +1,82 @@
+{% extends "store/base.html" %}
+
+{% block title %}My Orders — NOVA{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span>Your purchases</span>
+        <h1>My Orders</h1>
+    </div>
+</section>
+
+<section class="orders-section section">
+    <div class="container">
+
+        {% for order in orders %}
+
+        <div class="order-list-item">
+
+            <div>
+                <span>Order</span>
+                <strong>
+                    #{{ order.id }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Date</span>
+                <strong>
+                    {{ order.created_at|date:"M d, Y" }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Total</span>
+                <strong>
+                    ${{ order.total }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Status</span>
+                <strong>
+                    {{ order.status }}
+                </strong>
+            </div>
+
+            <a href="{% url 'tracking' %}?order={{ order.id }}"
+                class="btn btn-outline-primary">
+                Track
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-orders">
+
+            <i class="bi bi-box-seam"></i>
+
+            <h4>
+                No orders yet
+            </h4>
+
+            <p>
+                Your orders will appear here.
+            </p>
+
+            <a href="{% url 'products' %}"
+                class="btn btn-primary">
+                Start Shopping
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

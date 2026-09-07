@@ -1,0 +1,89 @@
+{% extends "store/base.html" %}
+
+{% block title %}Track Order — NOVA{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <span>Stay updated</span>
+        <h1>Track Your Order</h1>
+    </div>
+</section>
+
+<section class="tracking-section section">
+    <div class="container">
+
+        <form class="tracking-search"
+            method="get">
+
+            <input type="text"
+                name="order"
+                placeholder="Enter your order number"
+                value="{{ order_number }}">
+
+            <button class="btn btn-primary">
+                Track
+            </button>
+
+        </form>
+
+        {% if order %}
+
+        <div class="order-card">
+
+            <div class="order-top">
+
+                <div>
+                    <span>Order number</span>
+                    <strong>
+                        #{{ order.id }}
+                    </strong>
+                </div>
+
+                <span class="order-status">
+                    {{ order.status }}
+                </span>
+
+            </div>
+
+            <div class="tracking-line">
+
+                <div class="tracking-step active">
+                    <span>
+                        <i class="bi bi-check"></i>
+                    </span>
+                    <strong>Placed</strong>
+                </div>
+
+                <div class="tracking-step active">
+                    <span>
+                        <i class="bi bi-box"></i>
+                    </span>
+                    <strong>Processing</strong>
+                </div>
+
+                <div class="tracking-step">
+                    <span>
+                        <i class="bi bi-truck"></i>
+                    </span>
+                    <strong>Shipped</strong>
+                </div>
+
+                <div class="tracking-step">
+                    <span>
+                        <i class="bi bi-house"></i>
+                    </span>
+                    <strong>Delivered</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}
