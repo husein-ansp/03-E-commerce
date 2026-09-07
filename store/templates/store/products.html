@@ -1,5 +1,5 @@
 {% extends "store/base.html" %}
-
+{% load static %}
 {% block title %}Products — NOVA{% endblock %}
 
 {% block content %}
@@ -178,5 +178,8 @@
         </div>
     </div>
 </section>
+{% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/products.js' %}"></script>
 {% endblock %}
