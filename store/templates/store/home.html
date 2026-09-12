@@ -6,12 +6,12 @@
 {% block content %}
 
 <section class="hero">
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+
     <div class="container">
-
         <div class="hero-content">
-
-            <div class="hero-text">
-
+            <div class="hero-text reveal">
                 <span class="hero-tag">
                     <i class="bi bi-stars"></i>
                     New collection
@@ -23,12 +23,11 @@
                 </h1>
 
                 <p>
-                    Discover modern products made
-                    for your everyday life.
+                    Discover modern products, exclusive deals,
+                    and everything you need for your everyday life.
                 </p>
 
                 <div class="hero-buttons">
-
                     <a href="{% url 'products' %}"
                         class="btn btn-primary">
                         Shop Now
@@ -39,93 +38,98 @@
                         class="btn btn-outline-dark">
                         View Deals
                     </a>
-
                 </div>
 
+                <div class="hero-trust">
+                    <div>
+                        <i class="bi bi-truck"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-headset"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="hero-image">
+            <div class="hero-image reveal reveal-delay">
                 <img src="{% static 'images/banners/hero.jpg' %}"
                     alt="Featured products">
+                <div class="hero-image-overlay"></div>
             </div>
-
         </div>
     </div>
 </section>
 
 <section class="categories section">
     <div class="container">
-
-        <div class="section-title">
+        <div class="section-title reveal">
             <div>
                 <span>Explore</span>
                 <h2>Shop by category</h2>
             </div>
+
+            <a href="{% url 'products' %}">
+                View all
+                <i class="bi bi-arrow-right"></i>
+            </a>
         </div>
 
         <div class="category-grid">
-
             <a href="{% url 'products' %}?category=electronics"
-                class="category-card">
-
-                <i class="bi bi-headphones"></i>
-
+                class="category-card reveal"
+                style="--delay: .05s;">
+                <div class="category-icon">
+                    <i class="bi bi-headphones"></i>
+                </div>
                 <h5>Electronics</h5>
-
-                <span>
-                    Explore electronics
-                </span>
-
+                <span>Smart devices & accessories</span>
+                <i class="bi bi-arrow-up-right category-arrow"></i>
             </a>
 
             <a href="{% url 'products' %}?category=fashion"
-                class="category-card">
-
-                <i class="bi bi-bag"></i>
-
+                class="category-card reveal"
+                style="--delay: .1s;">
+                <div class="category-icon">
+                    <i class="bi bi-bag"></i>
+                </div>
                 <h5>Fashion</h5>
-
-                <span>
-                    Explore fashion
-                </span>
-
+                <span>Style for every occasion</span>
+                <i class="bi bi-arrow-up-right category-arrow"></i>
             </a>
 
             <a href="{% url 'products' %}?category=home"
-                class="category-card">
-
-                <i class="bi bi-house"></i>
-
+                class="category-card reveal"
+                style="--delay: .15s;">
+                <div class="category-icon">
+                    <i class="bi bi-house"></i>
+                </div>
                 <h5>Home</h5>
-
-                <span>
-                    Explore home products
-                </span>
-
+                <span>Make your space better</span>
+                <i class="bi bi-arrow-up-right category-arrow"></i>
             </a>
 
             <a href="{% url 'products' %}?category=gaming"
-                class="category-card">
-
-                <i class="bi bi-controller"></i>
-
+                class="category-card reveal"
+                style="--delay: .2s;">
+                <div class="category-icon">
+                    <i class="bi bi-controller"></i>
+                </div>
                 <h5>Gaming</h5>
-
-                <span>
-                    Explore gaming
-                </span>
-
+                <span>Gear for your setup</span>
+                <i class="bi bi-arrow-up-right category-arrow"></i>
             </a>
-
         </div>
     </div>
 </section>
 
-<section class="products-section section">
+<section class="products-section section section-alt">
     <div class="container">
-
-        <div class="section-title">
-
+        <div class="section-title reveal">
             <div>
                 <span>Our selection</span>
                 <h2>Featured products</h2>
@@ -135,36 +139,41 @@
                 View all
                 <i class="bi bi-arrow-right"></i>
             </a>
-
         </div>
 
         <div class="row g-4">
-
             {% for product in featured_products %}
-
             <div class="col-6 col-md-4 col-lg-3">
-
-                <div class="product-card">
+                <div class="product-card reveal"
+                    style="--delay: {{ forloop.counter0 }}0ms;">
 
                     <div class="product-image">
-
                         <a href="{% url 'product_detail' product.id %}">
+                            {% if product.image %}
                             <img src="{{ product.image.url }}"
                                 alt="{{ product.name }}">
+                            {% else %}
+                            <div class="product-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                            {% endif %}
                         </a>
 
+                        {% if product.is_sale %}
+                        <span class="product-badge">
+                            Sale
+                        </span>
+                        {% endif %}
+
                         <button class="wishlist-btn"
-                            data-product="{{ product.id }}">
+                            data-product="{{ product.id }}"
+                            type="button">
                             <i class="bi bi-heart"></i>
                         </button>
-
                     </div>
 
                     <div class="product-info">
-
-                        <span>
-                            {{ product.category.name }}
-                        </span>
+                        <span>{{ product.category.name }}</span>
 
                         <h5>
                             <a href="{% url 'product_detail' product.id %}">
@@ -178,31 +187,127 @@
                         </div>
 
                         <div class="product-bottom">
-
                             <strong>
                                 ${{ product.price }}
                             </strong>
 
                             <button class="add-cart"
-                                data-product="{{ product.id }}">
+                                data-product="{{ product.id }}"
+                                type="button">
                                 <i class="bi bi-plus"></i>
                             </button>
-
                         </div>
                     </div>
-
                 </div>
             </div>
 
             {% empty %}
-
             <div class="empty-products">
                 <i class="bi bi-box"></i>
-                <h4>No products available</h4>
-                <p>Check back later.</p>
+                <h4>No featured products yet</h4>
+                <p>Add featured products from the admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="sale-section section">
+    <div class="container">
+        <div class="section-title reveal">
+            <div>
+                <span>Limited time</span>
+                <h2>Hot deals</h2>
             </div>
 
+            <a href="{% url 'products' %}?sale=true">
+                See all deals
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="sale-grid">
+            {% for product in sale_products %}
+            <a href="{% url 'product_detail' product.id %}"
+                class="sale-card reveal"
+                style="--delay: {{ forloop.counter0 }}0ms;">
+
+                <div class="sale-card-image">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                        alt="{{ product.name }}">
+                    {% else %}
+                    <div class="product-placeholder">
+                        <i class="bi bi-image"></i>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="sale-card-content">
+                    <span>{{ product.category.name }}</span>
+                    <h4>{{ product.name }}</h4>
+
+                    <div>
+                        <strong>${{ product.price }}</strong>
+                        <i class="bi bi-arrow-up-right"></i>
+                    </div>
+                </div>
+            </a>
+
+            {% empty %}
+            <div class="empty-products">
+                <i class="bi bi-lightning-charge"></i>
+                <h4>No deals available</h4>
+                <p>Sale products will appear here.</p>
+            </div>
             {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="features-section section">
+    <div class="container">
+        <div class="features-box reveal">
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <div>
+                    <h5>Fast delivery</h5>
+                    <p>Quick and reliable shipping.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div>
+                    <h5>Secure shopping</h5>
+                    <p>Your information stays protected.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <div>
+                    <h5>Easy returns</h5>
+                    <p>Simple returns when you need them.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <div>
+                    <h5>Always here</h5>
+                    <p>Support whenever you need help.</p>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -210,9 +315,7 @@
 
 <section class="offer-section">
     <div class="container">
-
-        <div class="offer-box">
-
+        <div class="offer-box reveal">
             <div>
                 <span>Limited offer</span>
 
@@ -221,18 +324,20 @@
                 </h2>
 
                 <p>
-                    Grab your favorites
-                    before the offer ends.
+                    Grab your favorites before the offer ends.
                 </p>
 
                 <a href="{% url 'products' %}?sale=true"
                     class="btn btn-light">
                     Shop the sale
+                    <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
 
-            <i class="bi bi-lightning-charge"></i>
-
+            <div class="offer-decoration">
+                <i class="bi bi-lightning-charge"></i>
+                <i class="bi bi-stars"></i>
+            </div>
         </div>
     </div>
 </section>

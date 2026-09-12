@@ -107,5 +107,64 @@
         </div>
     </div>
 </section>
+<section class="reviews-section section">
+    <div class="container">
+
+        <div class="section-title reveal">
+            <div>
+                <span>Customer feedback</span>
+                <h2>Reviews</h2>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+
+            {% for review in reviews %}
+            <article class="review-card reveal">
+
+                <div class="review-header">
+                    <div class="review-avatar">
+                        {{ review.user.username|first|upper }}
+                    </div>
+
+                    <div>
+                        <strong>{{ review.user.username }}</strong>
+
+                        <div class="review-stars">
+                            {% for star in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                <i class="bi bi-star-fill"></i>
+                                {% else %}
+                                <i class="bi bi-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    {{ review.text }}
+                </p>
+
+                <small>
+                    {{ review.created_at|date:"M d, Y" }}
+                </small>
+
+            </article>
+
+            {% empty %}
+
+            <div class="empty-reviews">
+                <i class="bi bi-chat-square-text"></i>
+                <h4>No reviews yet</h4>
+                <p>Be the first person to review this product.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
 
 {% endblock %}

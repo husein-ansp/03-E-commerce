@@ -112,17 +112,35 @@
 
                 {% for product in products %}
 
-                <div class="product-card">
-
+                <div class="product-card reveal">
                     <div class="product-image">
 
                         <a href="{% url 'product_detail' product.id %}">
+                            {% if product.image %}
                             <img src="{{ product.image.url }}"
                                 alt="{{ product.name }}">
+                            {% else %}
+                            <div class="product-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                            {% endif %}
                         </a>
 
+                        {% if product.is_sale %}
+                        <span class="product-badge">
+                            Sale
+                        </span>
+                        {% endif %}
+
+                        {% if product.is_featured %}
+                        <span class="product-featured">
+                            <i class="bi bi-stars"></i>
+                        </span>
+                        {% endif %}
+
                         <button class="wishlist-btn"
-                            data-product="{{ product.id }}">
+                            data-product="{{ product.id }}"
+                            type="button">
                             <i class="bi bi-heart"></i>
                         </button>
 
