@@ -8,27 +8,53 @@
     <div class="container">
         <span>Your favorites</span>
         <h1>Wishlist</h1>
+        <p>
+            Save products you love and come back to them later.
+        </p>
     </div>
 </section>
 
 <section class="products-section section">
     <div class="container">
 
+        <div class="section-title reveal">
+
+            <div>
+                <span>Your collection</span>
+                <h2>Saved products</h2>
+            </div>
+
+            <a href="{% url 'products' %}">
+                Continue shopping
+                <i class="bi bi-arrow-right"></i>
+            </a>
+
+        </div>
+
         <div class="products-grid">
 
             {% for product in products %}
 
-            <div class="product-card">
+            <article class="product-card reveal">
 
                 <div class="product-image">
 
                     <a href="{% url 'product_detail' product.id %}">
-                        <img src="{{ product.image.url }}"
-                            alt="{{ product.name }}">
+
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}"
+                                alt="{{ product.name }}">
+                        {% else %}
+                            <div class="product-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                        {% endif %}
+
                     </a>
 
                     <button class="wishlist-btn active"
-                        data-product="{{ product.id }}">
+                        data-product="{{ product.id }}"
+                        type="button">
 
                         <i class="bi bi-heart-fill"></i>
 
@@ -48,6 +74,11 @@
                         </a>
                     </h5>
 
+                    <div class="product-rating">
+                        <i class="bi bi-star-fill"></i>
+                        {{ product.rating }}
+                    </div>
+
                     <div class="product-bottom">
 
                         <strong>
@@ -55,7 +86,9 @@
                         </strong>
 
                         <button class="add-cart"
-                            data-product="{{ product.id }}">
+                            data-product="{{ product.id }}"
+                            type="button"
+                            {% if product.stock == 0 %}disabled{% endif %}>
                             <i class="bi bi-plus"></i>
                         </button>
 
@@ -63,21 +96,30 @@
 
                 </div>
 
-            </div>
+            </article>
 
             {% empty %}
 
-            <div class="empty-products">
+            <div class="empty-products wishlist-empty">
 
-                <i class="bi bi-heart"></i>
+                <div class="empty-icon">
+                    <i class="bi bi-heart"></i>
+                </div>
 
                 <h4>
                     Your wishlist is empty
                 </h4>
 
                 <p>
-                    Save products you like here.
+                    Save products you love and
+                    find them here later.
                 </p>
+
+                <a href="{% url 'products' %}"
+                    class="btn btn-primary">
+                    Explore Products
+                    <i class="bi bi-arrow-right"></i>
+                </a>
 
             </div>
 

@@ -1,4 +1,5 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 {% block title %}Checkout — NOVA{% endblock %}
 
@@ -6,22 +7,50 @@
 
 <section class="page-header">
     <div class="container">
+
         <span>Almost there</span>
+
         <h1>Checkout</h1>
+
+        <p>
+            Complete your order securely.
+        </p>
+
     </div>
 </section>
 
 <section class="checkout-section section">
     <div class="container">
 
+        {% if error %}
+
+        <div class="checkout-error reveal">
+            <i class="bi bi-exclamation-circle"></i>
+
+            <div>
+                <strong>
+                    We couldn't place your order.
+                </strong>
+
+                <p>
+                    {{ error }}
+                </p>
+            </div>
+        </div>
+
+        {% endif %}
+
         <form method="post"
             class="checkout-grid">
 
             {% csrf_token %}
 
-            <div class="checkout-form">
+            <div class="checkout-form reveal">
 
-                <h4>Contact information</h4>
+                <div class="checkout-heading">
+                    <span>Step 1</span>
+                    <h4>Contact information</h4>
+                </div>
 
                 <div class="form-row">
 
@@ -40,6 +69,7 @@
                 <input type="email"
                     name="email"
                     placeholder="Email address"
+                    value="{{ request.user.email }}"
                     required>
 
                 <input type="text"
@@ -47,7 +77,10 @@
                     placeholder="Phone number"
                     required>
 
-                <h4>Shipping address</h4>
+                <div class="checkout-heading">
+                    <span>Step 2</span>
+                    <h4>Shipping address</h4>
+                </div>
 
                 <input type="text"
                     name="address"
@@ -68,7 +101,10 @@
 
                 </div>
 
-                <h4>Payment</h4>
+                <div class="checkout-heading">
+                    <span>Step 3</span>
+                    <h4>Payment method</h4>
+                </div>
 
                 <label class="payment-option">
 
@@ -79,7 +115,15 @@
 
                     <i class="bi bi-credit-card"></i>
 
-                    Credit / Debit Card
+                    <span>
+                        <strong>
+                            Credit / Debit Card
+                        </strong>
+
+                        <small>
+                            Secure card payment
+                        </small>
+                    </span>
 
                 </label>
 
@@ -89,29 +133,48 @@
                         name="payment_method"
                         value="cash">
 
-                    <i class="bi bi-cash"></i>
+                    <i class="bi bi-cash-stack"></i>
 
-                    Cash on Delivery
+                    <span>
+                        <strong>
+                            Cash on Delivery
+                        </strong>
+
+                        <small>
+                            Pay when your order arrives
+                        </small>
+                    </span>
 
                 </label>
 
-                <button class="btn btn-primary">
+                <button class="btn btn-primary checkout-submit"
+                    type="submit">
+
                     Place Order
                     <i class="bi bi-arrow-right"></i>
+
                 </button>
 
             </div>
 
-            <div class="checkout-summary">
+            <aside class="checkout-summary reveal reveal-delay">
 
-                <h4>Your Order</h4>
+                <div class="checkout-summary-heading">
 
-                <div id="checkoutItems">
+                    <div>
+                        <span>Your bag</span>
+                        <h4>Order Summary</h4>
+                    </div>
+
+                    <i class="bi bi-bag-check"></i>
+
                 </div>
 
-                <hr>
+                <div id="checkoutItems"
+                    class="checkout-items">
+                </div>
 
-                <div>
+                <div class="summary-line">
                     <span>Subtotal</span>
 
                     <strong id="checkoutSubtotal">
@@ -119,10 +182,15 @@
                     </strong>
                 </div>
 
-                <div>
+                <div class="summary-line">
                     <span>Shipping</span>
-                    <strong>$5.00</strong>
+
+                    <strong id="checkoutShipping">
+                        $0.00
+                    </strong>
                 </div>
+
+                <hr>
 
                 <div class="checkout-total">
 
@@ -134,11 +202,23 @@
 
                 </div>
 
-            </div>
+                <div class="secure-checkout">
+                    <i class="bi bi-shield-lock"></i>
+
+                    <span>
+                        Your checkout is protected.
+                    </span>
+                </div>
+
+            </aside>
 
         </form>
 
     </div>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}

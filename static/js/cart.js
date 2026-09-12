@@ -50,7 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItems.innerHTML = data.items.map((item) => `
             <div class="cart-item">
                 <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}">
+                    ${
+                        item.image
+                            ? `<img src="${item.image}" alt="${item.name}">`
+                            : `<i class="bi bi-image"></i>`
+                    }
                 </div>
 
                 <div class="cart-item-info">

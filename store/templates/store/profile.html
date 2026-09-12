@@ -7,10 +7,10 @@
 <section class="profile-section section">
     <div class="container">
 
-        <div class="profile-header">
+        <div class="profile-header reveal">
 
             <div class="profile-avatar">
-                <i class="bi bi-person"></i>
+                {{ request.user.username|first|upper }}
             </div>
 
             <div>
@@ -19,6 +19,56 @@
                 <h1>
                     {{ request.user.username }}
                 </h1>
+
+                <p>
+                    Manage your account and shopping activity.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="account-stats reveal">
+
+            <div class="account-stat">
+                <i class="bi bi-box-seam"></i>
+
+                <div>
+                    <strong>
+                        {{ request.user.orders.count }}
+                    </strong>
+
+                    <span>
+                        Orders
+                    </span>
+                </div>
+            </div>
+
+            <div class="account-stat">
+                <i class="bi bi-heart"></i>
+
+                <div>
+                    <strong>
+                        {{ request.user.wishlist_items.count }}
+                    </strong>
+
+                    <span>
+                        Wishlist
+                    </span>
+                </div>
+            </div>
+
+            <div class="account-stat">
+                <i class="bi bi-star"></i>
+
+                <div>
+                    <strong>
+                        NOVA
+                    </strong>
+
+                    <span>
+                        Member
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -29,8 +79,10 @@
 
                 <a href="{% url 'profile' %}"
                     class="active">
+
                     <i class="bi bi-person"></i>
                     Profile
+
                 </a>
 
                 <a href="{% url 'orders' %}">
@@ -43,21 +95,20 @@
                     Wishlist
                 </a>
 
-                <a href="#">
-                    <i class="bi bi-geo-alt"></i>
-                    Addresses
-                </a>
-
-                <a href="#">
-                    <i class="bi bi-gear"></i>
-                    Settings
-                </a>
-
             </aside>
 
             <div class="profile-content">
 
-                <h3>Personal information</h3>
+                <div class="content-heading">
+
+                    <div>
+                        <span>Account</span>
+                        <h3>Personal information</h3>
+                    </div>
+
+                    <i class="bi bi-person-badge"></i>
+
+                </div>
 
                 <form method="post">
 
@@ -65,26 +116,51 @@
 
                     <div class="form-row">
 
-                        <input type="text"
-                            name="first_name"
-                            value="{{ request.user.first_name }}"
-                            placeholder="First name">
+                        <div class="form-field">
+                            <label>First name</label>
 
-                        <input type="text"
-                            name="last_name"
-                            value="{{ request.user.last_name }}"
-                            placeholder="Last name">
+                            <input type="text"
+                                name="first_name"
+                                value="{{ request.user.first_name }}"
+                                placeholder="First name">
+                        </div>
+
+                        <div class="form-field">
+                            <label>Last name</label>
+
+                            <input type="text"
+                                name="last_name"
+                                value="{{ request.user.last_name }}"
+                                placeholder="Last name">
+                        </div>
 
                     </div>
 
-                    <input type="email"
-                        name="email"
-                        value="{{ request.user.email }}"
-                        placeholder="Email">    
+                    <div class="form-field">
 
-                    <button class="btn btn-primary">
-                        Save Changes
-                    </button>
+                        <label>Email address</label>
+
+                        <input type="email"
+                            name="email"
+                            value="{{ request.user.email }}"
+                            placeholder="Email">
+
+                    </div>
+
+                    <div class="profile-actions">
+
+                        <button class="btn btn-primary"
+                            type="submit">
+                            Save Changes
+                            <i class="bi bi-check2"></i>
+                        </button>
+
+                        <a href="{% url 'products' %}"
+                            class="btn btn-outline-primary">
+                            Continue Shopping
+                        </a>
+
+                    </div>
 
                 </form>
 

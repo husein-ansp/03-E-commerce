@@ -8,6 +8,9 @@
     <div class="container">
         <span>Stay updated</span>
         <h1>Track Your Order</h1>
+        <p>
+            Follow your order from checkout to delivery.
+        </p>
     </div>
 </section>
 
@@ -17,67 +20,161 @@
         <form class="tracking-search"
             method="get">
 
-            <input type="text"
-                name="order"
-                placeholder="Enter your order number"
-                value="{{ order_number }}">
+            <div class="tracking-input">
+                <i class="bi bi-search"></i>
 
-            <button class="btn btn-primary">
-                Track
+                <input type="text"
+                    name="order"
+                    placeholder="Enter your order number"
+                    value="{{ request.GET.order|default:'' }}">
+
+            </div>
+
+            <button class="btn btn-primary"
+                type="submit">
+                Track Order
+                <i class="bi bi-arrow-right"></i>
             </button>
 
         </form>
 
         {% if order %}
 
-        <div class="order-card">
+        <div class="order-card tracking-card reveal">
 
             <div class="order-top">
 
                 <div>
                     <span>Order number</span>
+
                     <strong>
                         #{{ order.id }}
                     </strong>
+
+                    <small>
+                        {{ order.created_at|date:"M d, Y · H:i" }}
+                    </small>
                 </div>
 
                 <span class="order-status">
-                    {{ order.status }}
+                    {{ order.get_status_display }}
                 </span>
 
             </div>
 
-            <div class="tracking-line">
+            {% if order.status == "cancelled" %}
 
-                <div class="tracking-step active">
-                    <span>
-                        <i class="bi bi-check"></i>
-                    </span>
-                    <strong>Placed</strong>
+                <div class="tracking-cancelled">
+                    <i class="bi bi-x-circle"></i>
+
+                    <div>
+                        <strong>Order cancelled</strong>
+                        <p>
+                            This order is no longer being processed.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="tracking-step active">
-                    <span>
-                        <i class="bi bi-box"></i>
-                    </span>
-                    <strong>Processing</strong>
+            {% else %}
+
+                <div class="tracking-line">
+
+                    <div class="tracking-step
+                        {% if order.status in 'pending processing shipped delivered' %}
+                            active
+                        {% endif %}">
+
+                        <span>
+                            <i class="bi bi-check"></i>
+                        </span>
+
+                        <strong>Placed</strong>
+
+                    </div>
+
+                    <div class="tracking-step
+                        {% if order.status in 'processing shipped delivered' %}
+                            active
+                        {% endif %}">
+
+                        <span>
+                            <i class="bi bi-box"></i>
+                        </span>
+
+                        <strong>Processing</strong>
+
+                    </div>
+
+                    <div class="tracking-step
+                        {% if order.status in 'shipped delivered' %}
+                            active
+                        {% endif %}">
+
+                        <span>
+                            <i class="bi bi-truck"></i>
+                        </span>
+
+                        <strong>Shipped</strong>
+
+                    </div>
+
+                    <div class="tracking-step
+                        {% if order.status == 'delivered' %}
+                            active
+                        {% endif %}">
+
+                        <span>
+                            <i class="bi bi-house-check"></i>
+                        </span>
+
+                        <strong>Delivered</strong>
+
+                    </div>
+
                 </div>
 
-                <div class="tracking-step">
-                    <span>
-                        <i class="bi bi-truck"></i>
-                    </span>
-                    <strong>Shipped</strong>
+            {% endif %}
+
+            <div class="tracking-details">
+
+                <div>
+                    <span>Items</span>
+                    <strong>{{ order.items.count }}</strong>
                 </div>
 
-                <div class="tracking-step">
-                    <span>
-                        <i class="bi bi-house"></i>
-                    </span>
-                    <strong>Delivered</strong>
+                <div>
+                    <span>Payment</span>
+                    <strong>
+                        {{ order.get_payment_method_display }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Total</span>
+                    <strong>
+                        ${{ order.total }}
+                    </strong>
                 </div>
 
             </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="tracking-empty reveal">
+
+            <div class="empty-icon">
+                <i class="bi bi-truck"></i>
+            </div>
+
+            <h4>
+                No order selected
+            </h4>
+
+            <p>
+                Enter an order number above to see its status.
+            </p>
 
         </div>
 

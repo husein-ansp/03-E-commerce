@@ -8,6 +8,9 @@
     <div class="container">
         <span>Your purchases</span>
         <h1>My Orders</h1>
+        <p>
+            Track and manage your recent purchases.
+        </p>
     </div>
 </section>
 
@@ -16,60 +19,86 @@
 
         {% for order in orders %}
 
-        <div class="order-list-item">
+        <article class="order-list-item order-card-modern reveal">
 
-            <div>
-                <span>Order</span>
-                <strong>
-                    #{{ order.id }}
-                </strong>
+            <div class="order-main">
+
+                <div class="order-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+
+                <div>
+                    <span>Order</span>
+
+                    <strong>
+                        #{{ order.id }}
+                    </strong>
+
+                    <small>
+                        {{ order.created_at|date:"M d, Y" }}
+                    </small>
+                </div>
+
             </div>
 
-            <div>
-                <span>Date</span>
-                <strong>
-                    {{ order.created_at|date:"M d, Y" }}
-                </strong>
-            </div>
+            <div class="order-meta">
 
-            <div>
-                <span>Total</span>
-                <strong>
-                    ${{ order.total }}
-                </strong>
-            </div>
+                <div>
+                    <span>Items</span>
 
-            <div>
-                <span>Status</span>
-                <strong>
-                    {{ order.status }}
-                </strong>
+                    <strong>
+                        {{ order.items.count }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Total</span>
+
+                    <strong>
+                        ${{ order.total }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Status</span>
+
+                    <strong class="order-status">
+                        {{ order.status }}
+                    </strong>
+                </div>
+
             </div>
 
             <a href="{% url 'tracking' %}?order={{ order.id }}"
                 class="btn btn-outline-primary">
-                Track
+
+                Track Order
+                <i class="bi bi-arrow-right"></i>
+
             </a>
 
-        </div>
+        </article>
 
         {% empty %}
 
         <div class="empty-orders">
 
-            <i class="bi bi-box-seam"></i>
+            <div class="empty-icon">
+                <i class="bi bi-box-seam"></i>
+            </div>
 
             <h4>
                 No orders yet
             </h4>
 
             <p>
-                Your orders will appear here.
+                Your completed purchases will appear here.
             </p>
 
             <a href="{% url 'products' %}"
                 class="btn btn-primary">
                 Start Shopping
+                <i class="bi bi-arrow-right"></i>
             </a>
 
         </div>

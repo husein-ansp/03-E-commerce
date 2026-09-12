@@ -394,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.updateCartCount = updateCartCount;
     window.updateWishlistCount = updateWishlistCount;
     window.showToast = showToast;
+
     const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
@@ -421,4 +422,65 @@ document.addEventListener("DOMContentLoaded", () => {
             element.classList.add("visible");
         });
     }
+
+    const decreaseQuantity =
+        document.getElementById("decreaseQuantity");
+
+    const increaseQuantity =
+        document.getElementById("increaseQuantity");
+
+    const quantityElement =
+        document.getElementById("quantity");
+
+    if (
+        decreaseQuantity &&
+        increaseQuantity &&
+        quantityElement
+    ) {
+        decreaseQuantity.addEventListener("click", () => {
+            const current =
+                parseInt(quantityElement.textContent, 10) || 1;
+
+            if (current > 1) {
+                quantityElement.textContent = current - 1;
+            }
+        });
+
+        increaseQuantity.addEventListener("click", () => {
+            const current =
+                parseInt(quantityElement.textContent, 10) || 1;
+
+            quantityElement.textContent = current + 1;
+        });
+    }
+
+    document.querySelectorAll(".buy-now-button")
+        .forEach((button) => {
+
+            button.addEventListener("click", async () => {
+                const productId = button.dataset.product;
+                const quantityElement =
+                    document.getElementById("quantity");
+
+                const quantity = quantityElement
+                    ? parseInt(
+                        quantityElement.textContent,
+                        10
+                    )
+                    : 1;
+
+                button.classList.add("loading");
+
+                await addToCart(
+                    productId,
+                    quantity
+                );
+
+                button.classList.remove("loading");
+
+                window.location.href = "/checkout/";
+            });
+        });
+
+    loadMiniCart();
 });

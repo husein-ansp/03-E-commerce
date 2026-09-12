@@ -9,14 +9,46 @@
 <section class="product-detail section">
     <div class="container">
 
+        <div class="breadcrumb-line reveal">
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+            <i class="bi bi-chevron-right"></i>
+
+            <a href="{% url 'products' %}">
+                Shop
+            </a>
+
+            <i class="bi bi-chevron-right"></i>
+
+            <span>
+                {{ product.name }}
+            </span>
+        </div>
+
         <div class="product-detail-grid">
 
-            <div class="detail-image">
-                <img src="{{ product.image.url }}"
-                    alt="{{ product.name }}">
+            <div class="detail-image reveal">
+
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                        alt="{{ product.name }}">
+                {% else %}
+                    <div class="detail-placeholder">
+                        <i class="bi bi-image"></i>
+                        <span>No image available</span>
+                    </div>
+                {% endif %}
+
+                {% if product.is_sale %}
+                    <span class="detail-sale-badge">
+                        Sale
+                    </span>
+                {% endif %}
+
             </div>
 
-            <div class="detail-info">
+            <div class="detail-info reveal reveal-delay">
 
                 <span class="detail-category">
                     {{ product.category.name }}
@@ -27,14 +59,23 @@
                 </h1>
 
                 <div class="detail-rating">
-                    <i class="bi bi-star-fill"></i>
+
+                    <span class="rating-stars">
+                        {% for star in "12345" %}
+                            {% if forloop.counter <= product.rating %}
+                                <i class="bi bi-star-fill"></i>
+                            {% else %}
+                                <i class="bi bi-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
 
                     {{ product.rating }}
 
                     <span>
-                        ({{ product.reviews.count }}
-                        reviews)
+                        {{ reviews|length }} reviews
                     </span>
+
                 </div>
 
                 <h2>
@@ -44,6 +85,36 @@
                 <p class="detail-description">
                     {{ product.description }}
                 </p>
+
+                <div class="detail-stock">
+
+                    {% if product.stock > 0 %}
+
+                        <span class="in-stock">
+                            <i class="bi bi-check-circle-fill"></i>
+                            In stock
+                        </span>
+
+                        {% if product.stock <= 5 %}
+                            <span class="stock-warning">
+                                Only {{ product.stock }} left
+                            </span>
+                        {% endif %}
+
+                    {% else %}
+
+                        <span class="stock-out">
+                            <i class="bi bi-x-circle-fill"></i>
+                            Out of stock
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="quantity-label">
+                    Quantity
+                </div>
 
                 <div class="quantity-box">
 
@@ -67,10 +138,22 @@
 
                     <button class="btn btn-primary
                         add-detail-cart"
-                        data-product="{{ product.id }}">
+                        data-product="{{ product.id }}"
+                        type="button"
+                        {% if product.stock == 0 %}disabled{% endif %}>
 
                         <i class="bi bi-bag-plus"></i>
                         Add to Cart
+
+                    </button>
+
+                    <button class="btn buy-now-button"
+                        data-product="{{ product.id }}"
+                        type="button"
+                        {% if product.stock == 0 %}disabled{% endif %}>
+
+                        Buy Now
+                        <i class="bi bi-arrow-right"></i>
 
                     </button>
 
@@ -88,17 +171,26 @@
 
                     <div>
                         <i class="bi bi-truck"></i>
-                        <span>Fast delivery</span>
+
+                        <span>
+                            Fast delivery
+                        </span>
                     </div>
 
                     <div>
                         <i class="bi bi-shield-check"></i>
-                        <span>Secure payment</span>
+
+                        <span>
+                            Secure payment
+                        </span>
                     </div>
 
                     <div>
                         <i class="bi bi-arrow-repeat"></i>
-                        <span>Easy returns</span>
+
+                        <span>
+                            Easy returns
+                        </span>
                     </div>
 
                 </div>
@@ -107,39 +199,51 @@
         </div>
     </div>
 </section>
+
 <section class="reviews-section section">
     <div class="container">
 
         <div class="section-title reveal">
+
             <div>
                 <span>Customer feedback</span>
                 <h2>Reviews</h2>
             </div>
+
         </div>
 
         <div class="reviews-grid">
 
             {% for review in reviews %}
+
             <article class="review-card reveal">
 
                 <div class="review-header">
+
                     <div class="review-avatar">
                         {{ review.user.username|first|upper }}
                     </div>
 
                     <div>
-                        <strong>{{ review.user.username }}</strong>
+                        <strong>
+                            {{ review.user.username }}
+                        </strong>
 
                         <div class="review-stars">
+
                             {% for star in "12345" %}
+
                                 {% if forloop.counter <= review.rating %}
-                                <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
                                 {% else %}
-                                <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
                                 {% endif %}
+
                             {% endfor %}
+
                         </div>
                     </div>
+
                 </div>
 
                 <p>
@@ -155,9 +259,17 @@
             {% empty %}
 
             <div class="empty-reviews">
+
                 <i class="bi bi-chat-square-text"></i>
-                <h4>No reviews yet</h4>
-                <p>Be the first person to review this product.</p>
+
+                <h4>
+                    No reviews yet
+                </h4>
+
+                <p>
+                    Be the first person to review this product.
+                </p>
+
             </div>
 
             {% endfor %}

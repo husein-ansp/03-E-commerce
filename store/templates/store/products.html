@@ -1,16 +1,28 @@
 {% extends "store/base.html" %}
 {% load static %}
+
 {% block title %}Products — NOVA{% endblock %}
 
 {% block content %}
 
 <section class="page-header">
     <div class="container">
+
         <span>Discover</span>
-        <h1>All Products</h1>
-        <p>
-            Find something you'll love.
-        </p>
+
+        {% if query %}
+            <h1>Search results</h1>
+            <p>
+                Showing results for
+                <strong>"{{ query }}"</strong>
+            </p>
+        {% else %}
+            <h1>All Products</h1>
+            <p>
+                Find something you'll love.
+            </p>
+        {% endif %}
+
     </div>
 </section>
 
@@ -19,14 +31,47 @@
 
         <div class="products-toolbar">
 
-            <button class="filter-button"
-                id="filterButton">
-                <i class="bi bi-sliders"></i>
-                Filters
-            </button>
+            <div class="toolbar-left">
+
+                <button class="filter-button"
+                    id="filterButton"
+                    type="button">
+                    <i class="bi bi-sliders"></i>
+                    Filters
+                </button>
+
+                <span class="products-count">
+                    Explore our collection
+                </span>
+
+            </div>
 
             <form method="get"
                 class="sort-form">
+
+                {% if query %}
+                    <input type="hidden"
+                        name="q"
+                        value="{{ query }}">
+                {% endif %}
+
+                {% if selected_category %}
+                    <input type="hidden"
+                        name="category"
+                        value="{{ selected_category }}">
+                {% endif %}
+
+                {% if min_price %}
+                    <input type="hidden"
+                        name="min_price"
+                        value="{{ min_price }}">
+                {% endif %}
+
+                {% if max_price %}
+                    <input type="hidden"
+                        name="max_price"
+                        value="{{ max_price }}">
+                {% endif %}
 
                 <select name="sort"
                     onchange="this.form.submit()">
@@ -35,19 +80,28 @@
                         Sort by
                     </option>
 
-                    <option value="newest">
+                    <option value="newest"
+                        {% if selected_sort == "newest" %}selected{% endif %}>
                         Newest
                     </option>
 
-                    <option value="price-low">
+                    <option value="price-low"
+                        {% if selected_sort == "price-low" %}selected{% endif %}>
                         Price: Low to High
                     </option>
 
-                    <option value="price-high">
+                    <option value="price-high"
+                        {% if selected_sort == "price-high" %}selected{% endif %}>
                         Price: High to Low
                     </option>
 
+                    <option value="rating"
+                        {% if selected_sort == "rating" %}selected{% endif %}>
+                        Highest Rated
+                    </option>
+
                 </select>
+
             </form>
 
         </div>
@@ -58,7 +112,10 @@
                 id="filters">
 
                 <div class="filter-head">
-                    <h5>Filters</h5>
+                    <div>
+                        <span>Refine</span>
+                        <h5>Filters</h5>
+                    </div>
 
                     <button id="closeFilters"
                         type="button">
@@ -68,40 +125,82 @@
 
                 <form method="get">
 
+                    {% if query %}
+                        <input type="hidden"
+                            name="q"
+                            value="{{ query }}">
+                    {% endif %}
+
                     <div class="filter-group">
 
                         <h6>Category</h6>
 
                         {% for category in categories %}
 
-                        <label>
-                            <input type="checkbox"
-                                name="category"
-                                value="{{ category.slug }}">
+                        <label class="filter-check">
 
-                            {{ category.name }}
+                            <input type="radio"
+                                name="category"
+                                value="{{ category.slug }}"
+                                {% if selected_category == category.slug %}
+                                    checked
+                                {% endif %}>
+
+                            <span>
+                                {{ category.name }}
+                            </span>
+
                         </label>
 
                         {% endfor %}
+
+                        {% if selected_category %}
+                            <a href="{% url 'products' %}"
+                                class="clear-filter">
+                                Clear category
+                            </a>
+                        {% endif %}
 
                     </div>
 
                     <div class="filter-group">
 
-                        <h6>Price</h6>
+                        <h6>Price range</h6>
 
                         <input type="number"
                             name="min_price"
+                            value="{{ min_price }}"
                             placeholder="Min price">
 
                         <input type="number"
                             name="max_price"
+                            value="{{ max_price }}"
                             placeholder="Max price">
 
                     </div>
 
-                    <button class="btn btn-primary w-100">
+                    <div class="filter-group">
+
+                        <h6>Special</h6>
+
+                        <label class="filter-check">
+
+                            <input type="checkbox"
+                                name="sale"
+                                value="true">
+
+                            <span>
+                                Sale products only
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                    <button class="btn btn-primary w-100"
+                        type="submit">
                         Apply Filters
+                        <i class="bi bi-arrow-right"></i>
                     </button>
 
                 </form>
@@ -112,35 +211,39 @@
 
                 {% for product in products %}
 
-                <div class="product-card reveal">
+                <article class="product-card reveal">
+
                     <div class="product-image">
 
                         <a href="{% url 'product_detail' product.id %}">
+
                             {% if product.image %}
-                            <img src="{{ product.image.url }}"
-                                alt="{{ product.name }}">
+                                <img src="{{ product.image.url }}"
+                                    alt="{{ product.name }}">
                             {% else %}
-                            <div class="product-placeholder">
-                                <i class="bi bi-image"></i>
-                            </div>
+                                <div class="product-placeholder">
+                                    <i class="bi bi-image"></i>
+                                </div>
                             {% endif %}
+
                         </a>
 
                         {% if product.is_sale %}
-                        <span class="product-badge">
-                            Sale
-                        </span>
+                            <span class="product-badge">
+                                Sale
+                            </span>
                         {% endif %}
 
                         {% if product.is_featured %}
-                        <span class="product-featured">
-                            <i class="bi bi-stars"></i>
-                        </span>
+                            <span class="product-featured">
+                                <i class="bi bi-stars"></i>
+                            </span>
                         {% endif %}
 
                         <button class="wishlist-btn"
                             data-product="{{ product.id }}"
-                            type="button">
+                            type="button"
+                            aria-label="Add to wishlist">
                             <i class="bi bi-heart"></i>
                         </button>
 
@@ -161,7 +264,24 @@
                         <div class="product-rating">
                             <i class="bi bi-star-fill"></i>
                             {{ product.rating }}
+                            <small>
+                                Rated product
+                            </small>
                         </div>
+
+                        {% if product.stock <= 5 and product.stock > 0 %}
+
+                            <small class="stock-warning">
+                                Only {{ product.stock }} left
+                            </small>
+
+                        {% elif product.stock == 0 %}
+
+                            <small class="stock-out">
+                                Out of stock
+                            </small>
+
+                        {% endif %}
 
                         <div class="product-bottom">
 
@@ -170,23 +290,36 @@
                             </strong>
 
                             <button class="add-cart"
-                                data-product="{{ product.id }}">
+                                data-product="{{ product.id }}"
+                                type="button"
+                                {% if product.stock == 0 %}disabled{% endif %}>
                                 <i class="bi bi-plus"></i>
                             </button>
 
                         </div>
 
                     </div>
-                </div>
+
+                </article>
 
                 {% empty %}
 
                 <div class="empty-products">
+
                     <i class="bi bi-search"></i>
+
                     <h4>No products found</h4>
+
                     <p>
-                        Try changing your filters.
+                        Try changing your search
+                        or filters.
                     </p>
+
+                    <a href="{% url 'products' %}"
+                        class="btn btn-primary">
+                        View all products
+                    </a>
+
                 </div>
 
                 {% endfor %}
@@ -196,6 +329,7 @@
         </div>
     </div>
 </section>
+
 {% endblock %}
 
 {% block extra_js %}
