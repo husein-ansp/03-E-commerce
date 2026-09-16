@@ -1,0 +1,107 @@
+NOVA STORE
+==========
+
+A modern full-stack e-commerce web application built with Django,
+HTML, CSS, JavaScript and Bootstrap.
+
+
+TECHNOLOGIES
+------------
+
+- Python
+- Django
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Bootstrap Icons
+- SQLite
+
+
+FEATURES
+--------
+
+- Modern responsive design
+- Dark mode
+- Product categories
+- Product search
+- Product filtering
+- Product sorting
+- Product details
+- Product gallery
+- Shopping cart
+- Wishlist
+- User registration
+- User login
+- User profile
+- Product reviews
+- Order management
+- Checkout system
+- Django administration
+- Database-backed products
+- Responsive mobile layout
+
+
+PROJECT STRUCTURE
+-----------------
+
+ecommerce/
+    Django project configuration
+
+store/
+    Main e-commerce application
+
+static/
+    Global static files
+
+media/
+    Uploaded product and category images
+
+templates/
+    Django templates
+
+
+DATABASE
+--------
+
+The project uses SQLite during development.
+
+Product information, categories, users, orders, reviews and wishlist
+items are stored in the database.
+
+
+DEVELOPMENT
+-----------
+
+Install the required dependencies:
+
+    pip install django pillow
+
+Run database migrations:
+
+    python manage.py makemigrations
+    python manage.py migrate
+
+Create an administrator account:
+
+    python manage.py createsuperuser
+
+Start the development server:
+
+    python manage.py runserver
+
+
+ADMIN PANEL
+-----------
+
+The Django administration panel is available at:
+
+    /admin/
+
+
+PROJECT STATUS
+--------------
+
+The project is currently under active development.
+
+More features and improvements will be added during development.

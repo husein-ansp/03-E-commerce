@@ -1,0 +1,195 @@
+{% extends "store/base.html" %}
+
+{% block title %}Wireless Headphones - NovaStore{% endblock %}
+
+{% block content %}
+<section class="product-detail-section section-padding">
+    <div class="container">
+        <div class="breadcrumb-nav">
+            <a href="/">Home</a>
+            <i class="bi bi-chevron-right"></i>
+            <a href="/products/">Products</a>
+            <i class="bi bi-chevron-right"></i>
+            <span>Wireless Headphones</span>
+        </div>
+
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="product-main-image">
+                    <span class="product-badge">-20%</span>
+                    <button class="gallery-wishlist" type="button" aria-label="Add to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <div class="product-placeholder">
+                        <i class="bi bi-headphones"></i>
+                    </div>
+                </div>
+
+                <div class="product-thumbnails">
+                    <button class="thumbnail active" type="button">
+                        <i class="bi bi-headphones"></i>
+                    </button>
+
+                    <button class="thumbnail" type="button">
+                        <i class="bi bi-headphones"></i>
+                    </button>
+
+                    <button class="thumbnail" type="button">
+                        <i class="bi bi-headphones"></i>
+                    </button>
+
+                    <button class="thumbnail" type="button">
+                        <i class="bi bi-headphones"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-detail-info">
+                <span class="product-category">Audio</span>
+
+                <h1>Wireless Headphones</h1>
+
+                <div class="detail-rating">
+                    <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                    </span>
+
+                    <a href="#reviews">4.7 · 128 Reviews</a>
+                </div>
+
+                <div class="detail-price">
+                    <strong>$79.99</strong>
+                    <del>$99.99</del>
+                    <span>20% OFF</span>
+                </div>
+
+                <p class="product-description">
+                    Experience immersive sound with comfortable wireless headphones
+                    designed for everyday listening, gaming and entertainment.
+                </p>
+
+                <div class="product-stock">
+                    <i class="bi bi-check-circle-fill"></i>
+                    In Stock
+                </div>
+
+                <div class="detail-option">
+                    <h3>Color</h3>
+
+                    <div class="color-options">
+                        <button class="color-option active" type="button" aria-label="Black"></button>
+                        <button class="color-option" type="button" aria-label="White"></button>
+                        <button class="color-option" type="button" aria-label="Blue"></button>
+                    </div>
+                </div>
+
+                <div class="detail-option">
+                    <h3>Quantity</h3>
+
+                    <div class="quantity-selector">
+                        <button type="button" aria-label="Decrease quantity">
+                            <i class="bi bi-dash"></i>
+                        </button>
+
+                        <input type="number" value="1" min="1">
+
+                        <button type="button" aria-label="Increase quantity">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="detail-actions">
+                    <button class="btn btn-primary add-to-cart" type="button">
+                        <i class="bi bi-bag-plus"></i>
+                        Add to Cart
+                    </button>
+
+                    <button class="btn btn-outline-primary" type="button">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="product-features">
+                    <div>
+                        <i class="bi bi-truck"></i>
+                        <span>Free shipping on orders over $50</span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        <span>30-day easy returns</span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+                        <span>Secure and protected checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-information">
+            <div class="product-tabs">
+                <button class="product-tab active" type="button">Description</button>
+                <button class="product-tab" type="button">Specifications</button>
+                <button class="product-tab" type="button">Reviews</button>
+            </div>
+
+            <div class="product-tab-content">
+                <h2>Product Description</h2>
+
+                <p>
+                    These wireless headphones combine modern design, comfortable
+                    materials and high-quality audio for an enjoyable listening
+                    experience.
+                </p>
+
+                <ul>
+                    <li>Wireless Bluetooth connectivity</li>
+                    <li>Long battery life</li>
+                    <li>Comfortable over-ear design</li>
+                    <li>Built-in microphone</li>
+                    <li>Fast charging support</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="reviews-section" id="reviews">
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">CUSTOMER FEEDBACK</span>
+                    <h2>Reviews</h2>
+                </div>
+            </div>
+
+            <div class="reviews-summary">
+                <div class="average-rating">
+                    <strong>4.7</strong>
+
+                    <div>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+
+                        <span>Based on 128 reviews</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="button">
+                    Write a Review
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

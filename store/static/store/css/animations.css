@@ -1,0 +1,114 @@
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 91, 255, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 0 12px rgba(99, 91, 255, 0);
+    }
+}
+
+.hero-text {
+    animation: fadeUp 0.8s ease both;
+}
+
+.hero-visual {
+    animation: fadeIn 1s ease 0.15s both;
+}
+
+.hero-floating-card {
+    animation: float 4s ease-in-out infinite;
+}
+
+.category-card {
+    animation: fadeUp 0.6s ease both;
+}
+
+.category-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.category-card:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.category-card:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+.category-card:nth-child(5) {
+    animation-delay: 0.32s;
+}
+
+.product-card {
+    animation: fadeUp 0.6s ease both;
+}
+
+.product-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.product-card:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.product-card:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+.benefit-item {
+    animation: fadeUp 0.6s ease both;
+}
+
+.newsletter-box {
+    animation: fadeIn 0.8s ease both;
+}
+
+.product-wishlist:hover {
+    animation: pulse 0.7s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

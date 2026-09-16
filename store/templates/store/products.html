@@ -1,0 +1,288 @@
+{% extends "store/base.html" %}
+
+{% block title %}Products - NovaStore{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="section-label">SHOP</span>
+        <h1>All Products</h1>
+        <p>Explore our collection and find something made for you.</p>
+    </div>
+</section>
+
+<section class="products-page section-padding">
+    <div class="container">
+        <div class="products-toolbar">
+            <div class="products-result">
+                <strong>128</strong> products found
+            </div>
+
+            <div class="products-sort">
+                <label for="sort-products">Sort by</label>
+                <select id="sort-products">
+                    <option value="featured">Featured</option>
+                    <option value="newest">Newest</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-layout">
+            <aside class="filters-sidebar">
+                <div class="filter-header">
+                    <h2>Filters</h2>
+                    <button type="button">Clear All</button>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Category</h3>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Electronics</span>
+                        <small>42</small>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Fashion</span>
+                        <small>36</small>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Gaming</span>
+                        <small>24</small>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Home</span>
+                        <small>18</small>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Accessories</span>
+                        <small>8</small>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+
+                    <div class="price-inputs">
+                        <input type="number" placeholder="Min">
+                        <span>-</span>
+                        <input type="number" placeholder="Max">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Rating</h3>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span class="rating-filter">
+                            <i class="bi bi-star-fill"></i>
+                            4.5 & up
+                        </span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span class="rating-filter">
+                            <i class="bi bi-star-fill"></i>
+                            4.0 & up
+                        </span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span class="rating-filter">
+                            <i class="bi bi-star-fill"></i>
+                            3.0 & up
+                        </span>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Availability</h3>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>In Stock</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>On Sale</span>
+                    </label>
+                </div>
+            </aside>
+
+            <div class="products-content">
+                <div class="mobile-filter-button">
+                    <button type="button">
+                        <i class="bi bi-sliders"></i>
+                        Filters
+                    </button>
+                </div>
+
+                <div class="product-grid">
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="product-badge">-20%</span>
+                            <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <div class="product-placeholder">
+                                <i class="bi bi-headphones"></i>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <span class="product-category">Audio</span>
+                            <h3>Wireless Headphones</h3>
+
+                            <div class="product-rating">
+                                <span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small>(128)</small>
+                            </div>
+
+                            <div class="product-price">
+                                <strong>$79.99</strong>
+                                <del>$99.99</del>
+                            </div>
+
+                            <a href="/products/1/" class="product-button">
+                                View Product
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="product-badge">NEW</span>
+                            <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <div class="product-placeholder">
+                                <i class="bi bi-smartwatch"></i>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <span class="product-category">Accessories</span>
+                            <h3>Smart Watch Pro</h3>
+
+                            <div class="product-rating">
+                                <span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small>(86)</small>
+                            </div>
+
+                            <div class="product-price">
+                                <strong>$149.99</strong>
+                            </div>
+
+                            <a href="/products/2/" class="product-button">
+                                View Product
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <div class="product-placeholder">
+                                <i class="bi bi-keyboard"></i>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <span class="product-category">Gaming</span>
+                            <h3>Mechanical Keyboard</h3>
+
+                            <div class="product-rating">
+                                <span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <small>(214)</small>
+                            </div>
+
+                            <div class="product-price">
+                                <strong>$89.99</strong>
+                            </div>
+
+                            <a href="/products/3/" class="product-button">
+                                View Product
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="product-badge">HOT</span>
+                            <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <div class="product-placeholder">
+                                <i class="bi bi-camera"></i>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <span class="product-category">Electronics</span>
+                            <h3>Compact Camera</h3>
+
+                            <div class="product-rating">
+                                <span>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small>(64)</small>
+                            </div>
+
+                            <div class="product-price">
+                                <strong>$329.99</strong>
+                            </div>
+
+                            <a href="/products/4/" class="product-button">
+                                View Product
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

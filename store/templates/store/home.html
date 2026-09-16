@@ -1,0 +1,352 @@
+{% extends "store/base.html" %}
+
+{% block title %}NovaStore - Discover Products Made For You{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="section-label">NEW COLLECTION</span>
+
+                <h1>
+                    Discover Products
+                    <span>Made For You.</span>
+                </h1>
+
+                <p>
+                    Explore carefully selected products, exclusive deals
+                    and everything you need in one place.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/products/" class="btn btn-primary">
+                        Shop Now
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="#featured" class="btn btn-outline-primary">
+                        Explore Featured
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card hero-card-main">
+                    <div class="hero-card-icon">
+                        <i class="bi bi-stars"></i>
+                    </div>
+                    <span>Trending Now</span>
+                    <strong>Smart choices.</strong>
+                </div>
+
+                <div class="hero-floating-card">
+                    <i class="bi bi-lightning-charge"></i>
+                    <div>
+                        <span>Special Offer</span>
+                        <strong>Up to 40% Off</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section section-padding">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="section-label">EXPLORE</span>
+                <h2>Shop By Category</h2>
+            </div>
+
+            <a href="/products/" class="section-link">
+                View All
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="category-grid">
+            <a href="/products/" class="category-card">
+                <div class="category-icon">
+                    <i class="bi bi-phone"></i>
+                </div>
+                <h3>Electronics</h3>
+                <span>120+ Products</span>
+            </a>
+
+            <a href="/products/" class="category-card">
+                <div class="category-icon">
+                    <i class="bi bi-person-standing"></i>
+                </div>
+                <h3>Fashion</h3>
+                <span>250+ Products</span>
+            </a>
+
+            <a href="/products/" class="category-card">
+                <div class="category-icon">
+                    <i class="bi bi-controller"></i>
+                </div>
+                <h3>Gaming</h3>
+                <span>90+ Products</span>
+            </a>
+
+            <a href="/products/" class="category-card">
+                <div class="category-icon">
+                    <i class="bi bi-house"></i>
+                </div>
+                <h3>Home</h3>
+                <span>180+ Products</span>
+            </a>
+
+            <a href="/products/" class="category-card">
+                <div class="category-icon">
+                    <i class="bi bi-watch"></i>
+                </div>
+                <h3>Accessories</h3>
+                <span>150+ Products</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="products-section section-padding" id="featured">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="section-label">OUR PICKS</span>
+                <h2>Featured Products</h2>
+            </div>
+
+            <a href="/products/" class="section-link">
+                View All
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="product-grid">
+            <article class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">-20%</span>
+
+                    <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <div class="product-placeholder">
+                        <i class="bi bi-headphones"></i>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Audio</span>
+                    <h3>Wireless Headphones</h3>
+
+                    <div class="product-rating">
+                        <span>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </span>
+                        <small>(128)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$79.99</strong>
+                        <del>$99.99</del>
+                    </div>
+
+                    <a href="/products/1/" class="product-button">
+                        View Product
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">NEW</span>
+
+                    <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <div class="product-placeholder">
+                        <i class="bi bi-smartwatch"></i>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Accessories</span>
+                    <h3>Smart Watch Pro</h3>
+
+                    <div class="product-rating">
+                        <span>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </span>
+                        <small>(86)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$149.99</strong>
+                    </div>
+
+                    <a href="/products/2/" class="product-button">
+                        View Product
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <div class="product-placeholder">
+                        <i class="bi bi-keyboard"></i>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Gaming</span>
+                    <h3>Mechanical Keyboard</h3>
+
+                    <div class="product-rating">
+                        <span>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </span>
+                        <small>(214)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$89.99</strong>
+                    </div>
+
+                    <a href="/products/3/" class="product-button">
+                        View Product
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">HOT</span>
+
+                    <button class="product-wishlist" type="button" aria-label="Add to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <div class="product-placeholder">
+                        <i class="bi bi-camera"></i>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">Electronics</span>
+                    <h3>Compact Camera</h3>
+
+                    <div class="product-rating">
+                        <span>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </span>
+                        <small>(64)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$329.99</strong>
+                    </div>
+
+                    <a href="/products/4/" class="product-button">
+                        View Product
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="benefits-section section-padding" id="shipping">
+    <div class="container">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable delivery to your door.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div>
+                    <h3>Secure Shopping</h3>
+                    <p>Your information is protected at every step.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </div>
+                <div>
+                    <h3>Easy Returns</h3>
+                    <p>Simple returns when something is not right.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="bi bi-headset"></i>
+                </div>
+                <div>
+                    <h3>24/7 Support</h3>
+                    <p>We are here whenever you need help.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter-section section-padding">
+    <div class="container">
+        <div class="newsletter-box">
+            <div>
+                <span class="section-label">STAY UPDATED</span>
+                <h2>Get the latest deals.</h2>
+                <p>Subscribe and never miss our newest products and special offers.</p>
+            </div>
+
+            <form class="newsletter-form">
+                <label for="newsletter-email" class="visually-hidden">Email address</label>
+                <input type="email" id="newsletter-email" placeholder="Enter your email address">
+                <button type="submit">
+                    Subscribe
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

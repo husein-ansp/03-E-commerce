@@ -1,0 +1,163 @@
+{% extends "store/base.html" %}
+
+{% block title %}Shopping Cart - NovaStore{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="section-label">YOUR SHOPPING BAG</span>
+        <h1>Shopping Cart</h1>
+        <p>Review your items before continuing to checkout.</p>
+    </div>
+</section>
+
+<section class="cart-section section-padding">
+    <div class="container">
+        <div class="cart-layout">
+            <div class="cart-items">
+                <div class="cart-header">
+                    <h2>Your Items</h2>
+                    <span>3 items</span>
+                </div>
+
+                <article class="cart-item">
+                    <div class="cart-item-image">
+                        <i class="bi bi-headphones"></i>
+                    </div>
+
+                    <div class="cart-item-info">
+                        <span>Audio</span>
+                        <h3>Wireless Headphones</h3>
+                        <strong>$79.99</strong>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <button type="button" aria-label="Decrease quantity">
+                            <i class="bi bi-dash"></i>
+                        </button>
+
+                        <input type="number" value="1" min="1">
+
+                        <button type="button" aria-label="Increase quantity">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="cart-item-total">
+                        <strong>$79.99</strong>
+
+                        <button type="button" aria-label="Remove item">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="cart-item">
+                    <div class="cart-item-image">
+                        <i class="bi bi-smartwatch"></i>
+                    </div>
+
+                    <div class="cart-item-info">
+                        <span>Accessories</span>
+                        <h3>Smart Watch Pro</h3>
+                        <strong>$149.99</strong>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <button type="button" aria-label="Decrease quantity">
+                            <i class="bi bi-dash"></i>
+                        </button>
+
+                        <input type="number" value="1" min="1">
+
+                        <button type="button" aria-label="Increase quantity">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="cart-item-total">
+                        <strong>$149.99</strong>
+
+                        <button type="button" aria-label="Remove item">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="cart-item">
+                    <div class="cart-item-image">
+                        <i class="bi bi-keyboard"></i>
+                    </div>
+
+                    <div class="cart-item-info">
+                        <span>Gaming</span>
+                        <h3>Mechanical Keyboard</h3>
+                        <strong>$89.99</strong>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <button type="button" aria-label="Decrease quantity">
+                            <i class="bi bi-dash"></i>
+                        </button>
+
+                        <input type="number" value="1" min="1">
+
+                        <button type="button" aria-label="Increase quantity">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="cart-item-total">
+                        <strong>$89.99</strong>
+
+                        <button type="button" aria-label="Remove item">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <a href="/products/" class="continue-shopping">
+                    <i class="bi bi-arrow-left"></i>
+                    Continue Shopping
+                </a>
+            </div>
+
+            <aside class="cart-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <strong>$319.97</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <strong>$0.00</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <strong>-$20.00</strong>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <strong>$299.97</strong>
+                </div>
+
+                <a href="/checkout/" class="btn btn-primary checkout-button">
+                    Proceed to Checkout
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+
+                <div class="secure-checkout">
+                    <i class="bi bi-shield-lock"></i>
+                    <span>Secure checkout</span>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
